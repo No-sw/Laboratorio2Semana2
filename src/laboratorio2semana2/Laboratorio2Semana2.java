@@ -4,6 +4,8 @@
  */
 package laboratorio2semana2;
 import java.util.Scanner;
+import java.util.*;
+
 /**
  *
  * @author Toshiba
@@ -16,12 +18,26 @@ public class Laboratorio2Semana2 {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese cualquier palabra: "); 
+        System.out.print("Ingrese las palabras: ");
         String texto = entrada.nextLine();
-        char [] arr = texto.toCharArray();
-        System.out.println("Texto inverso");
-        for(int x=arr.length; x > 0; x--){
-            System.out.print(arr[x-1]);
+        
+        Stack<Character> letters = new Stack();
+        
+        for(int i=0; i < texto.length(); i++){
+            if(Character.isLetter(texto.charAt(i))){
+                letters.push(texto.charAt(i));
+            }
         }
+        
+        StringBuilder reversed_String = new StringBuilder();
+        
+        for(int j=0; j < texto.length(); j++){
+            if(Character.isLetter(texto.charAt(j))){
+                reversed_String.append(letters.pop());
+            } else{
+                reversed_String.append(texto.charAt(j));
+            }
+        }
+        System.out.println(reversed_String.toString());    
     }
 }
