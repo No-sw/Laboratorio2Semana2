@@ -18,7 +18,7 @@ public class Laboratorio2Semana2 {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner entrada = new Scanner(System.in);
-        System.out.print("Ingrese las palabras: ");
+        System.out.print("Ingrese su texto: ");
         String texto = entrada.nextLine();
         
         Stack<Character> letters = new Stack();
