@@ -4,7 +4,6 @@
  */
 package laboratorio2semana2;
 import java.util.Scanner;
-import java.util.*;
 
 /**
  *
@@ -20,24 +19,38 @@ public class Laboratorio2Semana2 {
         Scanner entrada = new Scanner(System.in);
         System.out.print("Ingrese su texto: ");
         String texto = entrada.nextLine();
-        
-        Stack<Character> letters = new Stack();
-        
-        for(int i=0; i < texto.length(); i++){
-            if(Character.isLetter(texto.charAt(i))){
-                letters.push(texto.charAt(i));
+        char [] arr = texto.toCharArray();
+        char [] caracteres = {'!','"','@','#','$','%','&','(',')','=','-','¡','!','¿','?',
+        '+','^','`','´',',','.',';',':','{','}','/','|'};
+        char [] invertido = new char[arr.length];
+        int contador = arr.length;
+        for(int i=0; i < arr.length; i++){
+            for(int j=0; j < caracteres.length; j++){
+                if(arr[i] == caracteres[j]){
+                    invertido[i] = arr[i];
+                    break;
+                }
+                else if(arr[i] != caracteres[j] && j == arr.length-1){
+                    invertido[i] = ' ';
+                }
             }
         }
-        
-        StringBuilder reversed_String = new StringBuilder();
-        
-        for(int j=0; j < texto.length(); j++){
-            if(Character.isLetter(texto.charAt(j))){
-                reversed_String.append(letters.pop());
-            } else{
-                reversed_String.append(texto.charAt(j));
+        for(int x=arr.length; x > 0; x--){
+            if(invertido[x-1] == ' '){
+                for(int y=0; y < caracteres.length; y++){
+                    if(arr[arr.length-contador] == caracteres[y]){
+                        x++;
+                        break;
+                    }
+                    else if(arr[arr.length-contador] != caracteres[y] && y == caracteres.length-1){
+                        invertido[x-1] = arr[arr.length-contador];
+                    }
+                }
+                contador--;
             }
         }
-        System.out.println(reversed_String.toString());    
+        for(int z=0; z < invertido.length; z++){
+            System.out.print(invertido[z]);
+        }    
     }
 }
