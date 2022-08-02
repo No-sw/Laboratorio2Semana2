@@ -20,35 +20,26 @@ public class Laboratorio2Semana2 {
         System.out.print("Ingrese su texto: ");
         String texto = entrada.nextLine();
         char [] arr = texto.toCharArray();
-        char [] caracteres = {'!','"','@','#','$','%','&','(',')','=','-','¡','!','¿','?',
-        '+','^','`','´',',','.',';',':','{','}','/','|'};
         char [] invertido = new char[arr.length];
-        int contador = arr.length;
+        int j = arr.length;
         for(int i=0; i < arr.length; i++){
-            for(int j=0; j < caracteres.length; j++){
-                if(arr[i] == caracteres[j]){
-                    invertido[i] = arr[i];
-                    break;
-                }
-                else if(arr[i] != caracteres[j] && j == arr.length-1){
-                    invertido[i] = ' ';
-                }
+            if((arr[i] >= 'A' && arr[i] <= 'Z') || (arr[i] >= 'a' && arr[i] <= 'z')){
+                invertido[i] = ' ';
+            }else{
+                invertido[i] = arr[i];
             }
         }
         for(int x=arr.length; x > 0; x--){
             if(invertido[x-1] == ' '){
-                for(int y=0; y < caracteres.length; y++){
-                    if(arr[arr.length-contador] == caracteres[y]){
-                        x++;
-                        break;
-                    }
-                    else if(arr[arr.length-contador] != caracteres[y] && y == caracteres.length-1){
-                        invertido[x-1] = arr[arr.length-contador];
-                    }
+                if((arr[arr.length-j] >= 'A' && arr[arr.length-j] <= 'Z') || (arr[arr.length-j] >= 'a' && arr[arr.length-j] <= 'z')){
+                    invertido[x-1] = arr[arr.length-j];
                 }
-                contador--;
+                else{
+                    x++;
+                }
+                j--;
             }
-        }
+        }        
         for(int z=0; z < invertido.length; z++){
             System.out.print(invertido[z]);
         }    
